@@ -5,10 +5,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
 
 var app = express();
+
+//connecting to mongodb
+//from running server gather the port
+//creating the db if not existing
+mongoose.connect('localhost:27017/node-angular');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
