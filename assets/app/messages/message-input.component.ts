@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 
 import {MessageService} from "./message.service";
 import {Message} from "./message.model";
+import {NgForm} from "@angular/forms";
 /**
  * Created by Tzvika on 11/21/2016.
  */
@@ -13,8 +14,9 @@ import {Message} from "./message.model";
 export class MessageInputComponent{
     constructor(private messageService: MessageService){}
 
-    onSave(value:string){
-        const message = new Message(value, "tzvika");
-       this.messageService.addMessage(message);
+    onSubmit(form: NgForm){
+      const message = new Message(form.value.content, "tzvika");
+      this.messageService.addMessage(message);
+      form.resetForm();
    }
 }

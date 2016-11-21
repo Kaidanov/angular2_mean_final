@@ -6,7 +6,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var appRoutes = require('./routes/app');
+
+//var appRoutes = require('./routes/app');
+//var messagesRoutes = require('./routes/messages');
+var userRoutes = require('./routes/user');
 
 var app = express();
 
@@ -38,13 +41,15 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+//messageRoutes needs to come first  and have a prefix of /message
+//app.use('/message', messageRoutes);
 app.use('/', appRoutes);
 
-// catch 404 and forward to error handler
 //sending back to the angular2 application and there
 //handle the errors if needed
 //those lines just serve always even when 404 to client Angular2
-
+// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     return res.render('index');
 });
