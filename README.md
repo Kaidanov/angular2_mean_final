@@ -368,4 +368,6 @@ And you shoud connect the fields inside to the formControlName, for instance
 ```
 
 
-![Alt text](https://github.com/Kaidanov/angular2-mean-with-angular-models/blob/adding_mondgodb_to_nodejs/Ang2_node.jpg "Ang2 node.js relationship")
+![Alt text](https://github.com/Kaidanov/angular2_nodejs_connection/blob/Ready_frontend/Ang2_node.jpg "Ang2 node.js relationship")
+
+![Alt text](https://github.com/Kaidanov/angular2_nodejs_connection/blob/Ready_frontend/ObservableAng2.jpg "Observable Ang2")
