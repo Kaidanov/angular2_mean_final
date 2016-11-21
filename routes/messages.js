@@ -6,6 +6,21 @@ var router = express.Router();
 
 var Message = require('../models/message');
 
+router.get('/', function (req, res, next) {
+    Message.find()
+        .exec(function (err, messages) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error has occured!',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Success',
+                obj: messages
+            });
+        });
+});
 //save the messages
 //each post getting here has a /message at the begininng of the url
 router.post('/', function (req, res, next) {
@@ -27,7 +42,7 @@ router.post('/', function (req, res, next) {
            message: 'Saved Message',
            obj: result //the object from Mongodb as saved
        });
-   })
+   });
 
 });
 

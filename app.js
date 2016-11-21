@@ -8,11 +8,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
-//var messagesRoutes = require('./routes/messages');
-//var userRoutes = require('./routes/user');
+var messageRoutes = require('./routes/messages');
 
 var app = express();
-
 //connecting to mongodb
 //from running server gather the port
 //creating the db if not existing
@@ -43,7 +41,7 @@ app.use(function (req, res, next) {
 
 
 //messageRoutes needs to come first  and have a prefix of /message
-//app.use('/message', messageRoutes);
+app.use('/message', messageRoutes);
 app.use('/', appRoutes);
 
 //sending back to the angular2 application and there
