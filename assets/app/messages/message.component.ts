@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {Message} from "./message.model";
 import {MessageService} from "./message.service";
 
@@ -28,18 +28,14 @@ export class MessageComponent{
     ///enables the parent to send data to the child
     ///in html [message]="message" on the tag of the component
     @Input() message: Message;
-    ///event emitter passes the data to upper component
-    @Output() editClicked = new EventEmitter<string>();
+
 
     constructor(private messageService: MessageService){
 
     }
 
     onEdit(){
-        ///from the child to the parent
-        /// sends output to the upper component
-        ///in html (editClicked)="message.content = $event" - event holds the data
-        this.editClicked.emit("A new value");
+        this.messageService.editMessage(this.message);
     }
 
     onDelete()
