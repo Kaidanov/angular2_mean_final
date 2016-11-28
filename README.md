@@ -371,3 +371,16 @@ And you shoud connect the fields inside to the formControlName, for instance
 ![Alt text](https://github.com/Kaidanov/angular2_nodejs_connection/blob/Ready_frontend/Ang2_node.jpg "Ang2 node.js relationship")
 
 ![Alt text](https://github.com/Kaidanov/angular2_nodejs_connection/blob/Ready_frontend/ObservableAng2_1.jpg "Observable Ang2")
+
+
+
+
+** Authentication **
+
+for password encrytion on the node.js side
+npm install --save bcryptjs
+
+password : bcrypt.hashSync(req.body.password, 10), 
+//salt - the secon param  is the number of rounds to encrypt, how strong it is. you can't decrypt it. It's one way encryption
+
+
