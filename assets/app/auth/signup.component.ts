@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {AuthService} from "./auth.service";
+import {User} from "./user.model";
 /**
  * Created by Tzvika on 11/21/2016.
  */
@@ -10,9 +12,21 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 export class SignupComponent implements OnInit{
     myForm: FormGroup;
 
+    constructor(private authService: AuthService){}
+
     onSubmit()
     {
-        console.log(this.myForm);
+        const user = new User(
+            this.myForm.value.password,
+            this.myForm.value.email,
+            this.myForm.value.firstName,
+            this.myForm.value.lastName);
+
+        this.authService.signup(user)
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            );
         //refreshing after submit - cleaning the inputs
         this.myForm.reset();
     }
