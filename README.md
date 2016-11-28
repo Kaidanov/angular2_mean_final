@@ -384,3 +384,5 @@ password : bcrypt.hashSync(req.body.password, 10),
 //salt - the secon param  is the number of rounds to encrypt, how strong it is. you can't decrypt it. It's one way encryption
 
 
+JWT - creating a token for authentication check
+npm install --save jsonwebtoken
