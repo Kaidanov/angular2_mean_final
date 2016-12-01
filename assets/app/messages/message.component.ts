@@ -35,6 +35,7 @@ export class MessageComponent{
     }
 
     onEdit(){
+
         this.messageService.editMessage(this.message);
     }
 
@@ -44,6 +45,10 @@ export class MessageComponent{
             .subscribe(
                 result => console.log(result)
             );
+    }
+
+    belongsToUser(){
+        return localStorage.getItem('userId') == this.message.userId ;
     }
 
 }

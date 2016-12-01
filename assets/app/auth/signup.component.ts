@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit{
         this.authService.signup(user)
             .subscribe(
                 data => console.log(data),
-                error => console.log(error)
+                error => console.error(error)
             );
         //refreshing after submit - cleaning the inputs
         this.myForm.reset();

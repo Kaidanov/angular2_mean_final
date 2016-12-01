@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
@@ -35,7 +36,55 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.post('/signin', function (req, res, next) {
+    //find all fitting ang get the first one
+    User.findOne({email: req.body.email}, function(err,user){
+        if(err){
+            // return stops the flow and gets the err message
+            // if return removed the flow will continue
+            return res.status(500).json({
+                title: 'An error has occured!',
+                error: err
+            });
+        }
 
+        if(!user){
+            // return stops the flow and gets the err message
+            // if return removed the flow will continue
+            return res.status(401).json({
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
+            });
+        }
+
+        // the bcrypt creates a new hash
+        // but it can check if it is comparable
+        // to the primarelly saved password
+        if( !bcrypt.compareSync(req.body.password, user.password)){
+            return  res.status(401).json({
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
+            });
+        }
+
+        //creating token for checking later that the user is authenticated
+        //json web token - jwt
+        //sign - creates the token
+        //first param -  payload can be any data we want that we want to retrieve after
+        // securelly sending it ver the http
+        // second param - is the secret world by it token is created
+        // third param - configuration of token , in our case expiration
+        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+        res.status(200).json({
+            message: 'Successfully logged in',
+            token : token,
+            userId: user._id
+        });
+
+    });
+
+
+});
 
 
 
