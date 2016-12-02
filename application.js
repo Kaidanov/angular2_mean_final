@@ -12,9 +12,9 @@ var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 
 var app = express();
-//mongoose.connect('localhost:27017/node-angular');
+mongoose.connect('localhost:27017/node-angular');
 
-mongoose.connect('here4u:computer2503@ds055875.mlab.com:55875/kai-angular2-deployment');
+//mongoose.connect('here4u:computer2503@ds055875.mlab.com:55875/kai-angular2-deployment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
