@@ -19,6 +19,7 @@ export class AuthService{
     signup(user: User){
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type' : 'application/json'});
+        console.log("signup this._domainUrl= " + this._domainUrl);
         return this.http.post(this._domainUrl + 'user', body, {headers:headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
@@ -30,6 +31,7 @@ export class AuthService{
     signin(user: User){
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type' : 'application/json'});
+        console.log("signin this._domainUrl= " + this._domainUrl);
         return this.http.post(this._domainUrl + 'user/signin', body, {headers:headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {

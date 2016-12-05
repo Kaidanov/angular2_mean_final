@@ -4,11 +4,13 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs";
 import { Message } from "./message.model";
 import { ErrorService } from "../errors/error.service";
+import { AppConfig } from "../app.config";
 export var MessageService = (function () {
     function MessageService(http, errorService) {
         this.http = http;
         this.errorService = errorService;
         this.messages = [];
+        this._domainUrl = AppConfig.getEnvironmentVariable('endPoint');
         this.messageIsEdit = new EventEmitter();
     }
     MessageService.prototype.addMessage = function (message) {
@@ -18,7 +20,7 @@ export var MessageService = (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('https://kaidanov-angular2-mean.herokuapp.com/message' + token, body, { headers: headers })
+        return this.http.post(this._domainUrl + 'message' + token, body, { headers: headers })
             .map(function (response) {
             var result = response.json();
             var message = new Message(result.obj.content, result.obj.user.firstName, result.obj._id, result.obj.user._id);
@@ -32,7 +34,7 @@ export var MessageService = (function () {
     };
     MessageService.prototype.getMessages = function () {
         var _this = this;
-        return this.http.get('https://kaidanov-angular2-mean.herokuapp.com/message')
+        return this.http.get(this._domainUrl + 'message')
             .map(function (response) {
             var messages = response.json().obj;
             var transformedMessages = [];
@@ -59,7 +61,7 @@ export var MessageService = (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch('https://kaidanov-angular2-mean.herokuapp.com/message/' + message.messageId + token, body, { headers: headers })
+        return this.http.patch(this._domainUrl + 'message/' + message.messageId + token, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -73,7 +75,7 @@ export var MessageService = (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('https://kaidanov-angular2-mean.herokuapp.com/message/' + message.messageId + token)
+        return this.http.delete(this._domainUrl + 'message/' + message.messageId + token)
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());

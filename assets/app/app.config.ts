@@ -20,6 +20,7 @@ export class AppConfig {
         var environment:string;
         var data = {};
         environment = window.location.hostname;
+        console.log("environment = " +environment);
         switch (environment) {
             case'localhost':
                 data = {
@@ -41,6 +42,7 @@ export class AppConfig {
                     endPoint: 'https://kaidanov-angular2-mean.herokuapp.com/'
                 };
         }
+        console.log("data[value] = " + data[value]);
         return data[value];
     }
 }

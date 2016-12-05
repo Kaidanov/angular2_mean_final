@@ -21,6 +21,7 @@ export class MessageService{
         const token = localStorage.getItem('token')
                         ? '?token=' + localStorage.getItem('token')
                         :  '';
+        console.log("addMessage this._domainUrl= " + this._domainUrl);
         return this.http.post( this._domainUrl + 'message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
@@ -73,6 +74,7 @@ export class MessageService{
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             :  '';
+        console.log("updateMessage this._domainUrl= " + this._domainUrl);
         return this.http.patch(this._domainUrl + 'message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) =>  response.json())
             .catch((error: Response) => {
@@ -86,6 +88,7 @@ export class MessageService{
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             :  '';
+        console.log("deleteMessage this._domainUrl= " + this._domainUrl);
         return this.http.delete(this._domainUrl + 'message/' + message.messageId + token)
             .map((response: Response) =>  response.json())
             .catch((error: Response) => {

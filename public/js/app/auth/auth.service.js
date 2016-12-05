@@ -3,6 +3,7 @@ import { Http, Headers } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
 import { ErrorService } from "../errors/error.service";
+import { AppConfig } from "../app.config";
 /**
  * Created by Tzvika on 11/28/2016.
  */
@@ -10,12 +11,13 @@ export var AuthService = (function () {
     function AuthService(http, errorService) {
         this.http = http;
         this.errorService = errorService;
+        this._domainUrl = AppConfig.getEnvironmentVariable('endPoint');
     }
     AuthService.prototype.signup = function (user) {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('https://kaidanov-angular2-mean.herokuapp.com/user', body, { headers: headers })
+        return this.http.post(this._domainUrl + 'user', body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -26,7 +28,7 @@ export var AuthService = (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('https://kaidanov-angular2-mean.herokuapp.com/user/signin', body, { headers: headers })
+        return this.http.post(this._domainUrl + 'user/signin', body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
