@@ -1,10 +1,12 @@
 # angular2_nodejs_connection
 Seeder of all levels to work with Node.js Express with MongoDb and Angular2 - each branch different stage.  Connecting Angularjs with nodejs
 
-  <h3> [Demo] (https://kaidanov-angular2-mean.herokuapp.com/messages)  </h3> 
+  <h3> [Demo Heroku Deployed] (https://kaidanov-angular2-mean.herokuapp.com/messages)  </h3>   
 
-
-
+  <h3> [Demo AWS Deployed] http://lowcost-env.ppiw7txwdp.us-west-2.elasticbeanstalk.com/messages </h3>
+ 
+  Both use mlab.com as a source for MongoDB database
+ 
 # Node.js  
 Download node.js 
 https://nodejs.org/en/download/
