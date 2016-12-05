@@ -1,6 +1,11 @@
 # angular2_nodejs_connection
 Seeder of all levels to work with Node.js Express with MongoDb and Angular2 - each branch different stage.  Connecting Angularjs with nodejs
 
+  <h3> [Demo] (https://kaidanov-angular2-mean.herokuapp.com/messages)  </h3> 
+
+
+
+# Node.js  
 Download node.js 
 https://nodejs.org/en/download/
 Now we can use npm - node package manager -
@@ -18,6 +23,8 @@ Second Command Line to run the angular client ( views of node for now)
 npm start
 ```
 
+
+# MongoDB  
 Download MongoDB 
 https://www.mongodb.com/download-center?jmp=nav#community
 And install
@@ -70,6 +77,8 @@ router.get('/', function (req, res, next) {
 });
 ```
 
+
+# Angular 2  
 
 **_Angular2_**  
 **1.Property Binding**   
@@ -209,9 +218,7 @@ export class MessageComponent{
 }
 ```
 
-
-
-** Using Forms **    
+** Using Forms **      
 Create a wrapper of a form , define a local variable inside and reffer it to the object of form created by angular for you
 ``` HTML 
  <div class="col-md-8 col-md-offset-2">
@@ -368,10 +375,10 @@ And in HTML
 </div>
 ```
 
-Important - 
+** Important - 
 You can approach the form from component without sending over the object. It recognizes it's structure because it is defined there.  
 You should adjust the form saying you are using your own -  [formGroup]="myForm"  
-And you shoud connect the fields inside to the formControlName, for instance   
+And you shoud connect the fields inside to the formControlName, for instance   **  
 ``` html 
 <input type="text" id="firstName" class="form-control" formControlName="firstName">
 ```
