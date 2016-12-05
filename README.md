@@ -1,10 +1,14 @@
 # angular2_nodejs_connection
 Seeder of all levels to work with Node.js Express with MongoDb and Angular2 - each branch different stage.  Connecting Angularjs with nodejs
 
+Download node.js 
+https://nodejs.org/en/download/
+Now we can use npm - node package manager -
+http://blog.npmjs.org/post/85484771375/how-to-install-npm
+
 
 
 First Command Line run to run node.js server
-Each change needs to restart
 ```
 npm run build  
 ```
@@ -14,6 +18,10 @@ Second Command Line to run the angular client ( views of node for now)
 npm start
 ```
 
+Download MongoDB 
+https://www.mongodb.com/download-center?jmp=nav#community
+And install
+
 To use MongoDB after installation add packages
 ```
 	Ø npm install --save mongoose
@@ -21,6 +29,7 @@ To use MongoDB after installation add packages
 ```
 
 For running MongoDB server
+for me it worked specificly with --dbpath "e:\data\db" only
 ```
 cd E:\MongoDB\Server\3.2\bin
 E:\MongoDB\Server\3.2\bin>mongod.exe --dbpath "e:\data\db"
@@ -386,3 +395,12 @@ password : bcrypt.hashSync(req.body.password, 10),
 
 JWT - creating a token for authentication check
 npm install --save jsonwebtoken
+
+we use expiresIn to define the time of validity of the token
+
+
+** Deploy ** 
+https://mlab.com/ enables to create mongodb db for free
+https://dashboard.heroku.com/ enables you to free host the code - client and server - recognizes the node.js server
+or 
+AWS
