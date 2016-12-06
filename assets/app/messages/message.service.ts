@@ -40,7 +40,8 @@ export class MessageService{
     }
 
     getMessages(){
-        return this.http.get(this._domainUrl + 'message')
+        return Observable.interval(5000)
+            .switchMap(() => this.http.get(this._domainUrl + 'message'))
             .map((response: Response)=>{
                  const messages = response.json().obj;
                  let transformedMessages : Message[] = [];
