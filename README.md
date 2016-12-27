@@ -3,7 +3,7 @@ Seeder of all levels to work with Node.js Express with MongoDb and Angular2 - ea
 
   <h3> [Demo Heroku Deployed] (https://kaidanov-angular2-mean.herokuapp.com/messages)  </h3>   
 
-  <h3> [Demo AWS Deployed] (http://lowcost-env.ppiw7txwdp.us-west-2.elasticbeanstalk.com/messages) </h3>
+ 
  
   Both use mlab.com as a source for MongoDB database
  
