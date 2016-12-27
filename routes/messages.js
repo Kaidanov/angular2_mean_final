@@ -11,7 +11,8 @@ var Message = require('../models/message');
 
 //populate - mongoose method to expand a data we are retrieving
 router.get('/', function (req, res, next) {
-    Message.find()
+    console.log("req.query.maxMessageId = " + req.query.maxMessageId);
+    Message.find( { messageAutoIncreamentId: { $gt: req.query.maxMessageId}})
         .populate('user', 'firstName')
         .exec(function (err, messages) {
             if (err) {
@@ -32,7 +33,7 @@ router.use('/',function(req,res,next){
     jwt.verify(req.query.token, 'secret' , function(err, decoded){
         if(err){
             return  res.status(401).json({
-                title: 'Not authenticated',
+                title: 'Not authenticated 3',
                 error: err
             });
         }
@@ -105,7 +106,7 @@ router.patch('/:id', function(req,res,next){
       var decoded = jwt.decode(req.query.token);
       if(message.user != decoded.user._id){
            return  res.status(401).json({
-               title: 'Not authenticated',
+               title: 'Not authenticated 1',
                error: {message: 'Users do not match'}
            });
        }
@@ -149,7 +150,7 @@ router.delete('/:id', function(req,res,next){
         var decoded = jwt.decode(req.query.token);
         if(message.user != decoded.user._id){
             return  res.status(401).json({
-                title: 'Not authenticated',
+                title: 'Not authenticated 2',
                 error: {message: 'Users do not match'}
             });
         }

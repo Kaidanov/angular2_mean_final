@@ -7,13 +7,15 @@ export class Message{
     username: string;
     messageId?: string;
     userId? : string;
+    messageAutoIncreamentId?: number;
 
     //? - means optional
-    constructor(content:string,username:string, messageId?:string, userId?:string){
+    constructor(content:string,username:string, messageId?:string, userId?:string , messageAutoIncreamentId?: number){
         this.content = content;
         this.username = username;
         this.messageId = messageId;
         this.userId = userId;
+        this.messageAutoIncreamentId = messageAutoIncreamentId;
 
     }
 }

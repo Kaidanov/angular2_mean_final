@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {AuthService} from "./auth.service";
 import {User} from "./user.model";
+import {Router} from "@angular/router";
 /**
  * Created by Tzvika on 11/21/2016.
  */
@@ -12,7 +13,7 @@ import {User} from "./user.model";
 export class SignupComponent implements OnInit{
     myForm: FormGroup;
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService, private router: Router){}
 
     onSubmit()
     {
@@ -25,7 +26,19 @@ export class SignupComponent implements OnInit{
         this.authService.signup(user)
             .subscribe(
                 data => console.log(data),
-                error => console.error(error)
+                error => console.error(error),
+                () => this.authService.signin(user)  //on complete callback - sign me in
+                    .subscribe(
+                        data => {
+                            //can store in local storage , cookies
+                            // google angular2 + cookies
+                            //will persist if the browser is closed
+                            localStorage.setItem('token' ,  data.token);
+                            localStorage.setItem('userId' ,  data.userId);
+                            this.router.navigateByUrl('/'); //redirect
+                        },
+                        error => console.error(error)
+                    )
             );
         //refreshing after submit - cleaning the inputs
         this.myForm.reset();
